@@ -15,7 +15,7 @@ void _stdinflush()
 {
 	char c;
 	//Just in case we use fgets() or gets() after a scanf()
-	//Used in the stringwriteTest.c
+	//Used in the test/stringwriteTest.c
 	while((c = getchar()) != '\n' && c!= EOF);
 }
 
