@@ -22,12 +22,12 @@ Paste this file around your program source and link with
 
 To use this library right away, just go with these functions :
 
-`int fmakespace(const char *filename, int pos, int size)`  
-...Use this to _add_ `size` number of whitespaces in the `filename` at `pos` position
-`int finsert_char(const char *filename. int pos, char ch)`  
-...Use this to _add_ a character at `pos` position in `filename` file.
-`int finsert_str(const char* filename, int pos, char *string)`  
-...This one to _add_ a string in the middle/beginning of the `filename` file(as per `pos` position)
+	`int fmakespace(const char *filename, int pos, int size)`  
+...Use this to _add_ `size` number of whitespaces in the `filename` at `pos` position  
+	`int finsert_char(const char *filename. int pos, char ch)`  
+...Use this to _add_ a character at `pos` position in `filename` file.  
+	`int finsert_str(const char* filename, int pos, char *string)`  
+...This one to _add_ a string in the middle/beginning of the `filename` file(as per `pos` position)  
 
 If Successfully written, all the above functions return 1. 0 is returned in case of any faliure.
 
