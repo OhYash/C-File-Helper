@@ -40,6 +40,8 @@ int _makespace(const char *filename, int pos, int size)
 	{
 		fseek(fp, 0, SEEK_END);
 		totchars = ftell(fp);
+		
+		if(totchars < pos) return 0; // Can't make freespace after EOF.
 
 		while(totchars >= pos)
 		{
