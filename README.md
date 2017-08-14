@@ -1,7 +1,6 @@
 # c_file_utils
 Basic file handler utilities lib for c
 
---------
 
 ## WHY?
 C language doesn't really have the easiest file handling support, but the base is clean and simple enough that everything is possible with it.
@@ -17,18 +16,18 @@ C replaces characters and strings when you try to insert them ideally. This allo
 So far, this is all, but I plan to add more functions to it.
 
 ## How to use
-	The important file is `fileutils.h` in the lib directory.
-	Paste this file around your program source and link with
-	`#include "./path/to/fileutils.h"`
+The important file is `fileutils.h` in the lib directory.
+Paste this file around your program source and link with
+`#include "./path/to/fileutils.h"`
 
 To use this library right away, just go with these functions :
 
-	int fmakespace(const char *filename, int pos, int size)
-	...Use this to _add_ `size` number of whitespaces in the `filename` at `pos` position
-	int finsert_char(const char *filename. int pos, char ch)
-	...Use this to _add_ a character at `pos` position in `filename` file.
-	int finsert_str(const char* filename, int pos, char *string)
-	...This one to _add_ a string in the middle/beginning of the `filename` file(as per `pos` position)
+`int fmakespace(const char *filename, int pos, int size)`
+...Use this to _add_ `size` number of whitespaces in the `filename` at `pos` position
+`int finsert_char(const char *filename. int pos, char ch)`
+...Use this to _add_ a character at `pos` position in `filename` file.
+`int finsert_str(const char* filename, int pos, char *string)`
+...This one to _add_ a string in the middle/beginning of the `filename` file(as per `pos` position)
 
 If Successfully written, all the above functions return 1. 0 is returned in case of any faliure.
 
