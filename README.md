@@ -12,7 +12,7 @@ So, here's what you can do with this library out of the box :
 	- Add whitespaces in file. Any amount of spaces, at any place.
 	- Add a single character anywhere in the file.
 	- Add a string anywhere in the file.
-C replaces characters and strings when you try to insert them ideally. This allows you to **append** them at the given positions.
+C replaces characters and strings when you try to insert them ideally. This allows you to **append** them in the given positions.
 
 So far, this is all, but I plan to add more functions to it.
 
@@ -23,11 +23,11 @@ So far, this is all, but I plan to add more functions to it.
 
 To use this library right away, just go with these functions :
 
-	+ `fmakespace(const char *filename, int pos, int size)`
+	+ fmakespace(const char *filename, int pos, int size)
 	...Use this to _add_ `size` number of whitespaces in the `filename` at `pos` position
-	+ `finsert_char(const char *filename. int pos, char ch)`
+	+ finsert_char(const char *filename. int pos, char ch)
 	...Use this to _add_ a character at `pos` position in `filename` file.
-	+ `finsert_str(const char* filename, int pos, char *string)`
+	+ finsert_str(const char* filename, int pos, char *string)
 	...This one to _add_ a string in the middle/beginning of the `filename` file(as per `pos` position)
 
 If Successfully written, all the above functions return 1. 0 is returned in case of any faliure.
