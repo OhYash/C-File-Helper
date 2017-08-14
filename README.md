@@ -30,6 +30,8 @@ To use this library right away, just go with these functions :
 	+ `finsert_str(const char* filename, int pos, char *string)`
 	...This one to _add_ a string in the middle/beginning of the `filename` file(as per `pos` position)
 
+If Successfully written, all the above functions return 1. 0 is returned in case of any faliure.
+
 ----
 
 ## Author
