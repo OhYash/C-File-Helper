@@ -1,1 +1,4 @@
 This lne needs a character in the second word.
+
+Second work : lne -> line
+using finsert_char()
