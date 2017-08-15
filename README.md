@@ -7,10 +7,10 @@ C language doesn't really have the easiest file handling support, but the base i
 
 This library is purely help tool to be used when writing to files.
 
-So, here's what you can do with this library out of the box :
-        - Add whitespaces in file. Any amount of spaces, at any place.
-        - Add a single character anywhere in the file.
-        - Add a string anywhere in the file.
+So, here's what you can do with this library out of the box :  
+        - Add whitespaces in file. Any amount of spaces, at any place.  
+        - Add a single character anywhere in the file.  
+        - Add a string anywhere in the file.  
 C replaces characters and strings when you try to insert them ideally. This allows you to **append** them in the given positions.
 
 So far, this is all, but I plan to add more functions to it.
