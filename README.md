@@ -25,18 +25,19 @@ Paste this file around your program source and link with
 To use this library right away, just go with these functions :
 
 ```c
-int fmakespace(const char *filename, int pos, int size) 
+int fmakespace(FILE *fp, int pos, int size) 
 ```
-Use this to _add_ `size` number of whitespaces in the `filename` at `pos` position
+Use this to _add_ `size` number of whitespaces in the `fp` (file pointer) at `pos` position
 ```c
-int finsert_char(const char *filename. int pos, char ch) 
+int finsert_char(FILE *fp, int pos, char ch) 
 ```
-Use this to _add_ a character at `pos` position in `filename` file.
+Use this to _add_ a character at `pos` position in `fp` file.
 ```c
-int finsert_str(const char* filename, int pos, char *string)
+int finsert_str(FILE *fp, int pos, char *string)
 ```
-This one to _add_ a string in the middle/beginning of the `filename` file(as per `pos` position)
+This one to _add_ a string in the middle/beginning of the `fp` file as per `pos` position
 
+> `pos` indexing starts from 0
 > All the above functions return 1 on a successful completion and return 0 in case of any faliure.
 
 ----
