@@ -12,11 +12,17 @@ int main()
 	printf("Position and size of space : ");
 	scanf("%d %d", &where, &howlong);
 
-	//makeing space
-	int ret = makespace(filenam, where, howlong);
+	FILE *fp1 = fopen(filenam, "r+");
+
+	//making space
+	int ret = fmakespace(fp1, where, howlong);
 
 	if(ret == 0)
 		printf("File error.\n");
+	else
+		printf("Done successfully\n");
+
+	fclose(fp1);
 
 	return 0;
 }
