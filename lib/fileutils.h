@@ -29,12 +29,11 @@ int _strlen(char *str)
 	return inc;
 }
 
-int _makespace(const char *filename, int pos, int size)
+int _makespace(FILE *fp, int pos, int size)
 {
-	FILE *fp = fopen(filename, "r+");
 	char c;
 	int totchars;
-	pos--; //Sets pos accurately
+	//pos--; //Sets pos accurately
 	if(fp == NULL) return 0;
 	else
 	{
@@ -51,61 +50,54 @@ int _makespace(const char *filename, int pos, int size)
 			fputc(c, fp);
 			totchars--;
 		}
-		fclose(fp);
 	}
 	return 1;
 }
 
-int fmakespace(const char *filename, int pos, int size)
+int fmakespace(FILE *fp, int pos, int size)
 {
-	int ret = _makespace(filename, pos, size);
+	int ret = _makespace(fp, pos, size);
 	if(ret == 0) return 0;
 	else
 	{
-		FILE *fp = fopen(filename, "r+");
-		fseek(fp, pos-1, SEEK_SET);
+		fseek(fp, pos, SEEK_SET);
 		while(size--) // Put empty spaces
 
 		{
 			fputc(' ', fp);
 		}
-		fclose(fp);
 	}
 	return 1;
 }
 
 	
-int finsert_char(const char *filename, int pos, char ch)
+int finsert_char(FILE *fp, int pos, char ch)
 {
-	int ret = _makespace(filename, pos, 1);
+	int ret = _makespace(fp, pos, 1);
 	if(ret == 0) return 0;
 	else
 	{
-		FILE *fp = fopen(filename, "r+");
 		if(fp == NULL) return 0;
 		else
 		{
-			fseek(fp, pos-1, SEEK_SET);
+			fseek(fp, pos, SEEK_SET);
 			fputc(ch, fp);
-			fclose(fp);
 		}
 	}
 	return 1;
 }
 
-int finsert_str(const char* filename, int pos, char* string)
+int finsert_str(FILE *fp, int pos, char* string)
 {
-	int ret = _makespace(filename, pos, _strlen(string));
+	int ret = _makespace(fp, pos, _strlen(string));
 	if(ret == 0) return 0;
 	else
 	{
-		FILE *fp = fopen(filename, "r+");
 		if(fp == NULL) return 0;
 		else
 		{
-			fseek(fp, pos-1, SEEK_SET);
+			fseek(fp, pos, SEEK_SET);
 			fputs(string, fp);
-			fclose(fp);
 		}
 	}
 	return 1;
