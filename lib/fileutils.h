@@ -5,19 +5,11 @@
 
  * FUNCTIONS :
  * _strlen(char*)  :: Local strlength, remove string.h dependency
- * _makespace(const char*, int, int)  :: Pushes all characters foreward to add new content
- * makespace() ::  same as _makespace but puts empty spaces in places instead of existing chars. 
- * finsert_char(const char*, int, char)  :: Insert a single character
- * finsert_string(const char*, int, char*)  ::  Insert a string
+ * _makespace(FILE*, int, int)  :: Pushes all characters foreward to add new content
+ * fmakespace(FILE*, int, int) ::  same as _makespace but puts empty spaces in places instead of existing chars. 
+ * finsert_char(FILE*, int, char)  :: Insert a single character
+ * finsert_string(FILE*, int, char*)  ::  Insert a string
  */
-
-void _stdinflush()
-{
-	char c;
-	//Just in case we use fgets() or gets() after a scanf()
-	//Used in the test/stringwriteTest.c
-	while((c = getchar()) != '\n' && c!= EOF);
-}
 
 int _strlen(char *str)
 {
@@ -33,7 +25,6 @@ int _makespace(FILE *fp, int pos, int size)
 {
 	char c;
 	int totchars;
-	//pos--; //Sets pos accurately
 	if(fp == NULL) return 0;
 	else
 	{

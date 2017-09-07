@@ -1,6 +1,13 @@
 #include<stdio.h>
 #include "./../lib/fileutils.h"
 
+void _stdinflush()
+{
+        char c;
+        //Just in case we use fgets() or gets() after a scanf()
+        while((c = getchar()) != '\n' && c!= EOF);
+}
+
 int main()
 {
 	char filenam[255], string[101];
