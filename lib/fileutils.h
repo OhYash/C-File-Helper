@@ -21,18 +21,17 @@ int _strlen(char *str)
 	return inc;
 }
 
-int _makespace(FILE *fp, int pos, int size)
+int _makespace(FILE *fp, int size)
 {
 	char c;
 	int totchars;
-	if(fp == NULL) return 0;
+	int pos = ftell(fp);
+	if(fp == NULL) return -1;
 	else
 	{
 		fseek(fp, 0, SEEK_END);
 		totchars = ftell(fp);
 		
-		if(totchars < pos) return 0; // Can't make freespace after EOF.
-
 		while(totchars >= pos)
 		{
 			fseek(fp, totchars, SEEK_SET);
@@ -42,13 +41,13 @@ int _makespace(FILE *fp, int pos, int size)
 			totchars--;
 		}
 	}
-	return 1;
+	return pos;
 }
 
-int fmakespace(FILE *fp, int pos, int size)
+int fmakespace(FILE *fp, int size)
 {
-	int ret = _makespace(fp, pos, size);
-	if(ret == 0) return 0;
+	int pos = _makespace(fp, size);
+	if(pos == -1) return -1;
 	else
 	{
 		fseek(fp, pos, SEEK_SET);
@@ -58,38 +57,73 @@ int fmakespace(FILE *fp, int pos, int size)
 			fputc(' ', fp);
 		}
 	}
-	return 1;
+	return pos;
 }
 
 	
-int finsert_char(FILE *fp, int pos, char ch)
+int finsert_char(FILE *fp, char ch)
 {
-	int ret = _makespace(fp, pos, 1);
-	if(ret == 0) return 0;
+	int pos = _makespace(fp, 1);
+	if(pos == -1) return -1;
 	else
 	{
-		if(fp == NULL) return 0;
-		else
-		{
-			fseek(fp, pos, SEEK_SET);
-			fputc(ch, fp);
-		}
+		fseek(fp, pos, SEEK_SET);
+		fputc(ch, fp);
 	}
-	return 1;
+	return pos;
 }
 
-int finsert_str(FILE *fp, int pos, char* string)
+int finsert_str(FILE *fp, char* string)
 {
-	int ret = _makespace(fp, pos, _strlen(string));
-	if(ret == 0) return 0;
+	int pos = _makespace(fp, _strlen(string));
+	if(pos == -1) return -1;
 	else
 	{
-		if(fp == NULL) return 0;
-		else
-		{
-			fseek(fp, pos, SEEK_SET);
-			fputs(string, fp);
-		}
+		fseek(fp, pos, SEEK_SET);
+		fputs(string, fp);
 	}
-	return 1;
+	return pos;
+}
+
+int fcountlines(FILE *fp)
+{
+	int linecount=0;
+	fseek(fp, 0, SEEK_SET);
+	char ch;
+	while(!feof(fp))
+	{
+		ch = fgetc(fp);
+		if(ch == '\n')
+			linecount++;
+	}
+	return linecount;
+}
+
+int finsertline(FILE *fp, char *string)
+{
+	int pos = finsert_str(fp, string);
+	if(pos != -1)
+	{
+		//fseek(fp, pos+_strlen(string), SEEK_SET);
+		finsert_char(fp, '\n');
+	}
+
+	return pos;
+}
+
+int fseektoline(FILE *fp, int line)
+{
+	fseek(fp, 0, SEEK_SET);
+	while(!feof(fp) && line>0)
+	{
+		if(fgetc(fp) == '\n')
+			line--;
+	}
+	//int pos = finsert_str(fp, string);
+	//if (pos != -1)
+	//{
+	//	fseek(fp, _strlen(string), SEEK_CUR);
+	//	pos = finsert_char(fp, '\n');
+	//}
+	return ftell(fp);
 }

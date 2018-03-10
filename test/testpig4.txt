@@ -1,0 +1,4 @@
+Here is a test text file.
+EA
+Respawn Entertainment
+For fcountlines()
