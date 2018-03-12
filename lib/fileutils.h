@@ -5,10 +5,10 @@
 
  * FUNCTIONS :
  * _strlen(char*)  :: Local strlength, remove string.h dependency
- * _makespace(FILE*, int, int)  :: Pushes all characters foreward to add new content
- * fmakespace(FILE*, int, int) ::  same as _makespace but puts empty spaces in places instead of existing chars. 
- * finsert_char(FILE*, int, char)  :: Insert a single character
- * finsert_string(FILE*, int, char*)  ::  Insert a string
+ * _makespace(FILE*, int)  :: Pushes all characters foreward to add new content
+ * fmakespace(FILE*, int) ::  same as _makespace but puts empty spaces in places instead of existing chars. 
+ * finsert_char(FILE*, char)  :: Insert a single character
+ * finsert_string(FILE*, char*)  ::  Insert a string
  */
 
 int _strlen(char *str)
@@ -47,12 +47,10 @@ int _makespace(FILE *fp, int size)
 int fmakespace(FILE *fp, int size)
 {
 	int pos = _makespace(fp, size);
-	if(pos == -1) return -1;
-	else
+	if(pos != -1)
 	{
 		fseek(fp, pos, SEEK_SET);
 		while(size--) // Put empty spaces
-
 		{
 			fputc(' ', fp);
 		}
@@ -76,8 +74,7 @@ int finsert_char(FILE *fp, char ch)
 int finsert_str(FILE *fp, char* string)
 {
 	int pos = _makespace(fp, _strlen(string));
-	if(pos == -1) return -1;
-	else
+	if(pos != -1)
 	{
 		fseek(fp, pos, SEEK_SET);
 		fputs(string, fp);
@@ -104,7 +101,6 @@ int finsertline(FILE *fp, char *string)
 	int pos = finsert_str(fp, string);
 	if(pos != -1)
 	{
-		//fseek(fp, pos+_strlen(string), SEEK_SET);
 		finsert_char(fp, '\n');
 	}
 
@@ -119,11 +115,5 @@ int fseektoline(FILE *fp, int line)
 		if(fgetc(fp) == '\n')
 			line--;
 	}
-	//int pos = finsert_str(fp, string);
-	//if (pos != -1)
-	//{
-	//	fseek(fp, _strlen(string), SEEK_CUR);
-	//	pos = finsert_char(fp, '\n');
-	//}
 	return ftell(fp);
 }
